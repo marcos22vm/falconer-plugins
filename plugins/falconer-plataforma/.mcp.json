@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "plataforma": {
+      "type": "http",
+      "url": "https://mcp.falconertalent.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${RRHH_AGENT_KEY}"
+      }
+    }
+  }
+}

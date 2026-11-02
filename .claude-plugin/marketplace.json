@@ -1,0 +1,14 @@
+{
+  "name": "falconer-plugins",
+  "owner": {
+    "name": "Falconer Talent"
+  },
+  "description": "Plugins de Claude Code de la plataforma de reclutamiento.",
+  "plugins": [
+    {
+      "name": "falconer-plataforma",
+      "source": "./plugins/falconer-plataforma",
+      "description": "Tu Claude conectado a la plataforma de reclutamiento."
+    }
+  ]
+}
