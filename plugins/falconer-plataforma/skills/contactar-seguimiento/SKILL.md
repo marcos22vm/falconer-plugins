@@ -21,9 +21,12 @@ Las propuestas y los clientes van por `leads-oportunidades`; esta skill es **sol
 
 ## Se activa cuando la plataforma lo habilite para tu Claude
 Estas acciones existen, pero todavía no las puede pedir un Claude conectado (están en el BACKLOG). Mientras tanto la persona las registra en la app:
-- Registrar que mandó el mensaje de LinkedIn: `outreach__linkedin_sent`.
-- Registrar un mensaje que salió por fuera: `conversations__log_outbound`.
 - Dar a alguien por sin respuesta: `hunting__mark_no_response`.
+
+## Lo hacés vos, no el agente
+Esto no lo puede pedir ningún Claude conectado, por diseño: registra algo que una persona hizo en una plataforma de terceros o fuera del sistema (garantía 4: la extensión asiste, no automatiza). Lo hacés vos en la app (o con la extensión):
+- Registrar que mandaste el mensaje de LinkedIn: `outreach__linkedin_sent`.
+- Registrar un mensaje que salió por fuera: `conversations__log_outbound`.
 
 ## Devolución a quien no sigue
 La persona decide quién no sigue y el motivo (la skill puede proponerlo). El mensaje de cierre lo aprueba ella, **no menciona a otros candidatos** y se puede explicar si la candidata lo pide.

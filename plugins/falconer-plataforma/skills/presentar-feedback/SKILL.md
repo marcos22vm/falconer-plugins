@@ -22,8 +22,12 @@ Cuando la persona decide quiénes se presentan, `client_feedback__create_share` 
 
 ## Se activa cuando la plataforma lo habilite para tu Claude
 Estas acciones existen, pero todavía no las puede pedir un Claude conectado (están en el BACKLOG). Mientras tanto las hace la persona en la app y vos preparás el contenido:
-- `assessments__save_fundamentals`, `assessments__save_notes` y `assessments__edit_report` (reseña e informe ciego).
+- `assessments__save_notes` y `assessments__edit_report` (reseña e informe ciego).
 - `client_feedback__record_client_feedback` (lo que el cliente contestó por otro canal; queda pendiente de confirmar) y `client_feedback__edit_weekly_report`.
+
+## Lo hacés vos, no el agente
+Esto no lo puede pedir ningún Claude conectado, por diseño: el nivel de inglés lo pone una persona escuchando (garantía 2: la IA recomienda, la persona decide). Lo hacés vos en la app:
+- Guardar los fundamentos de la reseña: `assessments__save_fundamentals`.
 
 ## Lo que decide la persona
 Quién se presenta, qué datos se ocultan, la reseña, el informe, aprobar el envío al cliente y confirmar su respuesta.
