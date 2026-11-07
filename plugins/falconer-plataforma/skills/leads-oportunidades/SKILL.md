@@ -6,7 +6,7 @@ description: Maneja la parte comercial: leads (empresas), oportunidades y propue
 Esta skill es del lado del **cliente**. Los candidatos van por `sourcing-cv`, `machear` y `contactar-seguimiento`. Vos preparás y sugerís; **la persona veta, firma y envía**, y aprueba cada calificación que pidas.
 
 ## Leads
-1. **¿Ya existe?** `leads__lookup_company` por nombre o enlace de LinkedIn antes de dar de alta. `leads__list_leads` y `lead_board__list_board` muestran el estado de cada empresa y qué pide atención.
+1. **¿Ya existe?** `leads__lookup_company` por nombre o enlace de LinkedIn antes de dar de alta. `leads__list_leads` muestra el estado de cada empresa; `lead_board__list_to_close`, lo que está para cerrar o descartar (el Panorama entero se ve en la app).
 2. **Alta.** `leads__create_lead` (tarjeta de aprobación) con el país, tipo y tamaño que te diga la persona, y `leads__add_contact` para sus contactos, con procedencia y base legal (si falta algo, preguntá).
 3. **Revisión.** `leads__next_lead_to_review` trae el siguiente sin revisar. La respuesta incluye acciones posibles: **no las ejecutes por tu cuenta**. Si la persona decide habilitarlo, `leads__enable_lead` sale como tarjeta de aprobación; vetarlo lo hace ella en la app.
 4. **Calificación sugerida.** `leads__suggest_ratings` calcula la sugerida de los que no la tienen y devuelve conteos por calificación y los ids; el motivo de cada una lo ve la persona en la app. Pasarla a calificación propia es de ella.

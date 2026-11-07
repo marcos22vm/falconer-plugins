@@ -12,7 +12,7 @@ Vos preparás y ordenás; **la persona decide quién se presenta, qué se oculta
 4. **Informe ciego.** `assessments__open_report` arma el borrador sin datos que identifiquen a la persona, `assessments__translate_report` lo pasa a otro idioma como borrador y `assessments__get_report` dice qué le falta. **Marcarlo como listo y recomendar a un candidato lo hace la persona en la app.**
 
 ## Lo que contesta el cliente
-`client_feedback__list_shares` y `client_feedback__get_feedback` muestran lo compartido y la respuesta vigente por candidato; `client_feedback__next_feedback_to_record` trae la próxima respuesta sin registrar. Cuando la persona cuenta qué decidió el cliente, `client_feedback__confirm_decision` la confirma (avanza la postulación de etapa o la cierra con el motivo del cliente): sale como **tarjeta de aprobación** y la decide ella.
+`client_feedback__list_shares` y `client_feedback__get_feedback` muestran lo compartido y la respuesta vigente por candidato; `client_feedback__next_feedback_to_record` trae la próxima respuesta sin registrar. Cuando la persona te cuenta lo que el cliente le dijo por otro canal (mail, llamada), `client_feedback__record_client_feedback` lo registra con la decisión (`advance` o `pass`) y **sin motivo**: si mandás uno, 422 `free_text_not_allowed`; con «no sigue» el motivo lo escribe ella al aprobar y vos no lo ves. Sale como tarjeta, queda pendiente de confirmar (no mueve la postulación) y cuenta como respuesta del cliente. Pide que la owner haya prendido «lo irreversible y las decisiones sobre personas» (si no, 403 `person_decisions_disabled`). Cuando la persona decide confirmarla, `client_feedback__confirm_decision` la confirma (avanza la postulación de etapa o la cierra con el motivo del cliente): sale como **tarjeta de aprobación** y la decide ella.
 
 ## Compartir con el cliente
 Cuando la persona decide quiénes se presentan, `client_feedback__create_share` manda al cliente el enlace a las postulaciones en perfil ciego (lo ve un tercero): sale como **tarjeta de aprobación** que ella revisa. `client_feedback__revoke_share` lo revoca si hace falta.
@@ -23,7 +23,7 @@ Cuando la persona decide quiénes se presentan, `client_feedback__create_share` 
 ## Se activa cuando la plataforma lo habilite para tu Claude
 Estas acciones existen, pero todavía no las puede pedir un Claude conectado (están en el BACKLOG). Mientras tanto las hace la persona en la app y vos preparás el contenido:
 - `assessments__save_notes` y `assessments__edit_report` (reseña e informe ciego).
-- `client_feedback__record_client_feedback` (lo que el cliente contestó por otro canal; queda pendiente de confirmar) y `client_feedback__edit_weekly_report`.
+- `client_feedback__edit_weekly_report`.
 
 ## Lo hacés vos, no el agente
 Esto no lo puede pedir ningún Claude conectado, por diseño: el nivel de inglés lo pone una persona escuchando (garantía 2: la IA recomienda, la persona decide). Lo hacés vos en la app:

@@ -18,10 +18,7 @@ Las propuestas y los clientes van por `leads-oportunidades`; esta skill es **sol
    (la vuelve al proceso si estaba como «no responde»). Las dos salen como tarjeta de aprobación y antes la owner tiene
    que habilitarlas para tu rol. Registrar un contacto puede disparar un recordatorio si hay una regla activa: avisale.
 9. **Demoras.** La búsqueda dura aproximadamente **un mes**; avisá si pasa de ~30 días con candidatos sin avanzar.
-
-## Se activa cuando la plataforma lo habilite para tu Claude
-Estas acciones existen, pero todavía no las puede pedir un Claude conectado (están en el BACKLOG). Mientras tanto la persona las registra en la app:
-- Dar a alguien por sin respuesta: `hunting__mark_no_response`.
+10. **Sin respuesta.** `hunting__next_application_without_response` trae quién espera hace 24 horas o más. Contale a la persona quiénes son y que elija; sobre lo que te mostró la cola, `hunting__mark_no_response` la da por sin respuesta (tarjeta de aprobación, sólo si la consultora prendió las decisiones sobre personas). Una que no te mostró la cola da 404. La candidata sigue en la base y si contesta vuelve al proceso.
 
 ## Lo hacés vos, no el agente
 Esto no lo puede pedir ningún Claude conectado, por diseño: registra algo que una persona hizo en una plataforma de terceros o fuera del sistema (garantía 4: la extensión asiste, no automatiza). Lo hacés vos en la app (o con la extensión):

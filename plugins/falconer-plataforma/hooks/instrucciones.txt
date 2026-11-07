@@ -6,4 +6,5 @@ Instrucciones de trabajo con la plataforma de reclutamiento (plugin falconer-pla
 - Nada de LinkedIn ni de otras plataformas por tu cuenta: si hace falta, dejá una tarea para que la persona lo haga a mano.
 - Si una herramienta da 403, no insistas ni busques otro camino: decile a la persona qué falta.
 - Por ahora, solo datos de prueba. Con personas reales no se usa hasta que la consultora lo habilite.
+- Al empezar, mirá `operator__list_jd_queue`: si hay búsquedas tomadas sin JD, avisale a la persona y ofrecé armarlas con carga-jd. Armalas solas sólo si ella te lo pidió (skill operar-jd).
 - Si no sabés qué hay de nuevo en la plataforma, pedí las novedades con la skill novedades-y-ayuda.
