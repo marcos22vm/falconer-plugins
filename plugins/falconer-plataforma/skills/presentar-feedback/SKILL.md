@@ -8,8 +8,8 @@ Vos preparás y ordenás; **la persona decide quién se presenta, qué se oculta
 ## Antes de presentar
 1. **Qué pide este cliente.** `hunting__get_presentation_template` y `hunting__get_search_presentation_items` dicen qué exige el cliente con cada candidato (por ejemplo, CV sin datos de contacto). `hunting__get_presentation_checklist` muestra qué falta de cada candidato.
 2. **Quiénes están en carrera.** `hunting__get_my_shortlist` lista las postulaciones abiertas de la persona en esa búsqueda y cómo quedó cada contacto.
-3. **Reseña de la primera entrevista.** `assessments__open_assessment` abre el marco y `assessments__request_suggestion` pide a la IA una propuesta de estado por criterio, con cita, para que la persona la revise en la app. Los datos base (años relevantes, nivel de inglés, expectativa salarial) y las notas de la entrevista los carga la persona (ver abajo): pedile esos datos y dejalos ordenados.
-4. **Informe ciego.** `assessments__open_report` arma el borrador sin datos que identifiquen a la persona, `assessments__translate_report` lo pasa a otro idioma como borrador y `assessments__get_report` dice qué le falta. **Marcarlo como listo y recomendar a un candidato lo hace la persona en la app.**
+3. **Reseña de la primera entrevista.** `assessments__open_assessment` abre el marco y `assessments__request_suggestion` pide a la IA una propuesta de estado por criterio, con cita, para que la persona la revise en la app. Los datos base (años relevantes, nivel de inglés, expectativa salarial) los carga la persona (ver abajo). Las notas de la entrevista que ella te dicte las podés guardar con `assessments__save_notes`: sale como **tarjeta** con el texto entero (avisale si reemplaza otras), quedan marcadas como tuyas y se revisan como un archivo.
+4. **Informe ciego.** `assessments__open_report` arma el borrador sin datos que identifiquen a la persona, `assessments__translate_report` lo pasa a otro idioma como borrador y `assessments__get_report` dice qué le falta. Para corregir el texto, `assessments__edit_report` con todas las oraciones (cada una anclada a un criterio decidido): sale como **tarjeta** con el texto entero, vuelve a borrador y lo que cambiaste queda marcado como tuyo. **Marcarlo como listo y recomendar a un candidato lo hace la persona en la app.**
 
 ## Lo que contesta el cliente
 `client_feedback__list_shares` y `client_feedback__get_feedback` muestran lo compartido y la respuesta vigente por candidato; `client_feedback__next_feedback_to_record` trae la próxima respuesta sin registrar. Cuando la persona te cuenta lo que el cliente le dijo por otro canal (mail, llamada), `client_feedback__record_client_feedback` lo registra con la decisión (`advance` o `pass`) y **sin motivo**: si mandás uno, 422 `free_text_not_allowed`; con «no sigue» el motivo lo escribe ella al aprobar y vos no lo ves. Sale como tarjeta, queda pendiente de confirmar (no mueve la postulación) y cuenta como respuesta del cliente. Pide que la owner haya prendido «lo irreversible y las decisiones sobre personas» (si no, 403 `person_decisions_disabled`). Cuando la persona decide confirmarla, `client_feedback__confirm_decision` la confirma (avanza la postulación de etapa o la cierra con el motivo del cliente): sale como **tarjeta de aprobación** y la decide ella.
@@ -18,12 +18,7 @@ Vos preparás y ordenás; **la persona decide quién se presenta, qué se oculta
 Cuando la persona decide quiénes se presentan, `client_feedback__create_share` manda al cliente el enlace a las postulaciones en perfil ciego (lo ve un tercero): sale como **tarjeta de aprobación** que ella revisa. `client_feedback__revoke_share` lo revoca si hace falta.
 
 ## Informe semanal
-`client_feedback__get_weekly_report` arma el borrador con las métricas de la búsqueda. Si la búsqueda pasa de un mes sin avance, decíselo.
-
-## Se activa cuando la plataforma lo habilite para tu Claude
-Estas acciones existen, pero todavía no las puede pedir un Claude conectado (están en el BACKLOG). Mientras tanto las hace la persona en la app y vos preparás el contenido:
-- `assessments__save_notes` y `assessments__edit_report` (reseña e informe ciego).
-- `client_feedback__edit_weekly_report`.
+`client_feedback__get_weekly_report` arma el borrador con las métricas de la búsqueda. Si la búsqueda pasa de un mes sin avance, decíselo. Para proponer el texto, mostráselo a la persona y pedilo con `client_feedback__edit_weekly_report`: sale como **tarjeta** con el texto entero, y aprobarla es revisarlo (queda revisado a su nombre). Sin nombres, correos ni teléfonos de candidatos. Mandarlo al cliente lo hace ella en la app.
 
 ## Lo hacés vos, no el agente
 Esto no lo puede pedir ningún Claude conectado, por diseño: el nivel de inglés lo pone una persona escuchando (garantía 2: la IA recomienda, la persona decide). Lo hacés vos en la app:

@@ -6,6 +6,13 @@
       "headers": {
         "Authorization": "Bearer ${RRHH_AGENT_KEY}"
       }
+    },
+    "plataforma-lecturas": {
+      "type": "http",
+      "url": "https://mcp.falconertalent.com/mcp/code",
+      "headers": {
+        "Authorization": "Bearer ${RRHH_AGENT_KEY}"
+      }
     }
   }
 }
