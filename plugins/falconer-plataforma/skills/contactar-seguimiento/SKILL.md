@@ -21,6 +21,12 @@ Las propuestas y los clientes van por `leads-oportunidades`; esta skill es **sol
 9. **Demoras.** La búsqueda dura aproximadamente **un mes**; avisá si pasa de ~30 días con candidatos sin avanzar.
 10. **Sin respuesta.** `hunting__next_application_without_response` trae quién espera hace 24 horas o más. Contale a la persona quiénes son y que elija; sobre lo que te mostró la cola, `hunting__mark_no_response` la da por sin respuesta (tarjeta de aprobación, sólo si la consultora prendió las decisiones sobre personas). Una que no te mostró la cola da 404. La candidata sigue en la base y si contesta vuelve al proceso. Para recordarle, `hunting__preview_application_reminder` y después `hunting__remind_application` (tarjeta con el recordatorio de la regla aprobada, una por persona).
 
+## Si no sale
+- Antes de pedir un envío, mirá `outreach__get_message_context`. Si un canal está bloqueado o un pedido da `contact_basis_missing`, **explicá las condiciones** (base, retención, país, sin supresión y, por correo, dirección corporativa) y **no afirmes cuál falta si no lo sabés**; no mandes a la persona a buscar un campo. A un contacto de un lead (no candidato) se lo mira con `leads__check_cold_contact`, en `leads-oportunidades`.
+- **No vuelvas a pedir** la aprobación de lo que ya falló por la misma causa (`plataforma__estado_de_accion` dice por qué).
+- Si la app bloquea un paso, ofrecé el camino alternativo que exista (otro canal con base, registrar lo que la persona hizo a mano) en vez de dar por frenado el resto.
+- Personas de prueba: la marca va en `data_kind`, no en el nombre; no pongas palabras de marca (PRUEBA, KIT) en sus nombres.
+
 ## Lo hacés vos, no el agente
 Esto no lo puede pedir ningún Claude conectado, por diseño: registra algo que una persona hizo en una plataforma de terceros o fuera del sistema (garantía 4: la extensión asiste, no automatiza). Lo hacés vos en la app (o con la extensión):
 - Registrar que mandaste el mensaje de LinkedIn: `outreach__linkedin_sent`.

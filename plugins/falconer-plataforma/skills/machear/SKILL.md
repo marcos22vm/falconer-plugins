@@ -12,6 +12,9 @@ El sistema aplica un prefiltro y la IA evalúa y sugiere con cita. **Nadie se ra
 4. **Sugerencias para revisar.** `matching__next_ai_suggestion_to_review` trae la próxima. Mostrale a la persona **qué dice el sistema y por qué** (requisito y cita), no un ranking.
 5. **Decidir.** Aceptar o rechazar cada sugerencia **lo hace la persona en la app** (en «Candidatos sugeridos»); vos no tenés esa herramienta. Decile cuántas quedan pendientes y dónde.
 
+## Puntaje aproximado, sólo si la persona lo pide
+Si no hay un macheo exacto y la persona pide «dejá estos con un puntaje de primera aproximación», usá `matching__approximate_score` (hasta 20 `person_id` ya evaluados, `asked_by_person: true`). **El número no lo ponés vos**: lo calcula la plataforma con la regla que aprobó la consultora. Transmití el aviso que trae, los **pendientes antes del número** y que es **aproximado**. No ordenes por ese número, no armes un top, no lo compares entre búsquedas, no lo uses para descartar ni se lo digas a la candidata o al cliente. Sin regla aprobada da 409 `no-score-rule`: decile que una owner la apruebe en la app. Las citas están en `matching__get_result`. Si el perfil es un oficio (`role_years_not_counted`), el número es sólo lo cumplido.
+
 ## Lo que decide la persona
 Aceptar o rechazar cada sugerencia; el orden final; a quién se contacta y a quién se descarta.
 
