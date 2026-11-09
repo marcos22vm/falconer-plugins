@@ -10,7 +10,7 @@ Vos preparás; **la reclutadora revisa, corrige y decide**. Las herramientas son
 2. **Las notas.** Las carga la reclutadora en la app (texto o archivo; el archivo se revisa antes, como un CV). Si te las dicta, guardarlas es una tarjeta de aprobación: la confirma ella. No inventes ni completes notas.
 3. **El scorecard.** Delegá en el subagente `carga-scorecard` (lee las notas y el CV redactados y deja la propuesta). Si no tenés el permiso de operador, `assessments__request_suggestion` le pide la propuesta a la IA del producto. Vos quedate con el resultado: cuántas propuestas quedaron.
 4. **La revisión.** Decile a la reclutadora que la propuesta está en la ficha, pestaña Scorecard: ella acepta o corrige cada criterio y decide la recomendación. No lo hagas por ningún camino.
-5. **El informe.** Con el scorecard decidido, `assessments__open_report` y `assessments__draft_report` arman el borrador para el cliente (y `assessments__translate_report` si lo pide en otro idioma). Marcarlo listo y compartirlo lo hace ella en la app.
+5. **El informe.** Con el scorecard decidido, `assessments__open_report` y `assessments__draft_report` arman el borrador para el cliente (y `assessments__translate_report` si lo pide en otro idioma). Para dejarlo listo, `assessments__mark_report_ready` (tarjeta con el informe entero y su versión; si algo lo traba, `report_not_ready`: los nombres propios los confirma ella en la app). Compartirlo con el cliente lo hace ella en la app.
 
 ## Lo que decide la persona
 Cargar las notas; aceptar o corregir cada criterio del scorecard; la recomendación; el texto del informe, marcarlo listo y compartirlo con el cliente.
