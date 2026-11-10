@@ -1,6 +1,6 @@
 {
   "name": "falconer-plataforma",
-  "version": "0.7.3",
+  "version": "0.8.0",
   "displayName": "Plataforma de reclutamiento",
   "description": "Tu Claude conectado a la plataforma de reclutamiento de la consultora: agentes que leen CV, JD y macheos y dejan sugerencias pendientes, y skills para el día a día. La IA recomienda, la persona decide.",
   "author": {
