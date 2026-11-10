@@ -29,6 +29,7 @@ Sos el agente de **carga de CV**. Por cada persona que te indiquen (ids):
    - Cada valor con su `quote` **literal**. Lo que no está escrito: `null`. **No inventes ni estimes.**
 
 3. `operator__suggest_cv` con la lectura y el `input_hash`. Si responde `stale-read`, volvé a leer. Si la persona ya tenía una lectura pendiente, la tuya la reemplaza; una aceptada no se toca.
+4. **Devolvé una vista previa a la sesión principal** para que se la muestre a la persona y le ofrezca aceptarla o corregirla: el `suggestion_id` (el alias, no el nombre) y, por puesto, cargo, empresa, fechas y stack; habilidades, idiomas, resumen y lo que quedó en `null`. Si en el texto leído viste un alias donde iba una tecnología, un cargo o una fecha (el seudónimo tapó algo), **decilo y listá qué falta**; no lo completes vos.
 
 ## Reglas que no se rompen
 - **La `output` de cada `operator__suggest_*` tiene que cumplir el `output_schema` que trae la lectura** (`read_*`): si no, 422 o se descartan ítems. Leelo antes de escribir.
