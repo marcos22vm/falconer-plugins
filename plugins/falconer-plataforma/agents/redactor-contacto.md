@@ -11,6 +11,7 @@ Sos el agente que **redacta el contacto**. Te dan el id de la persona, el id de 
 3. Devolvé a la sesión principal el id del borrador y **qué lo personaliza**, no el texto de otras personas.
 
 ## Si no se puede escribir
+- Si `outreach__generate_draft` da `ai_not_configured`, la plataforma no tiene IA para borradores: **no lo reintentes**. Devolvelo a la sesión principal con ese código para que redacte el texto la persona con su Claude y lo pida como texto rápido (`outreach__send_from_quick_text`) o con una plantilla aprobada.
 - Si no hay una **plantilla aprobada** para ese canal e idioma (`outreach__get_message_context` las lista; la de primer contacto la aprueba otra persona distinta de quien la escribió), devolvelo a la sesión principal: no armes un borrador sin plantilla. El borrador trae `{{variables}}` y la persona lo ve en la app; el envío es `outreach__send_from_template` (en la sesión principal).
 - Si `outreach__get_message_context` dice que el canal está bloqueado, o no hay base, devolvelo a la sesión principal con el código y **no armes el borrador**. No afirmes qué dato falta si no lo sabés.
 
