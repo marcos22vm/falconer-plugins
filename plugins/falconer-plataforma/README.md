@@ -15,7 +15,7 @@ Plugin de Claude Code de la plataforma de reclutamiento (ADR 0506). Reemplaza al
   prendido (ADR 0806) y la owner lo apaga en Ajustes: apagado, conecta igual y muestra **cero herramientas**; si la instalación
   no tiene Code Mode, da error. Las dos cosas son esperables: se lee por «plataforma», que lo avisa (ADR 0807). Con Code Mode prendido, «plataforma» deja de listar las lecturas y la sesión carga cerca de un 38 % menos.
 
-Por ahora, **solo datos de prueba**. La IA recomienda, la persona decide; nada de automatizar LinkedIn.
+Si el servidor dice que la consultora habilitó datos reales (`datos_reales.permitido` en `plataforma__que_falta`), se trabaja con lo real y con lo de prueba, distinguiéndolos por `data_kind` (cada ítem de una cola o lista lo trae); si no, sólo con lo de prueba. Lo decide la owner en Configuración, no este kit. La IA recomienda, la persona decide; nada de automatizar LinkedIn.
 
 ## Si algo no anda
 - «plataforma-lecturas» con cero herramientas: Code Mode no está prendido en tu consultora; no es una falla.

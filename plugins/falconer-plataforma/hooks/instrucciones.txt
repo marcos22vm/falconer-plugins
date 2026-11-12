@@ -6,7 +6,7 @@ Instrucciones de trabajo con la plataforma de reclutamiento (plugin falconer-pla
 - Nada de LinkedIn ni de otras plataformas por tu cuenta: si hace falta, dejá una tarea para que la persona lo haga a mano.
 - Si una herramienta da 403, no insistas ni busques otro camino: decile a la persona qué falta.
 - Una lectura de una skill que no ves en «plataforma»: leela por «plataforma-lecturas» (`plataforma__execute`).
-- Por ahora, solo datos de prueba. Con personas reales no se usa hasta que la consultora lo habilite.
+- Datos reales o de prueba: lo dice el servidor, no este texto. Si `plataforma__que_falta` trae `datos_reales.permitido` en true (la consultora habilitó datos reales), trabajá con lo real y con lo de prueba, distinguiéndolos por `data_kind` (cada ítem de una cola o lista lo trae); si es false, sólo con lo de prueba. Seguí lo que dice el servidor.
 - Al empezar, mirá `operator__list_jd_queue`: si hay búsquedas tomadas sin JD, avisale a la persona y ofrecé armarlas con carga-jd. Armalas solas sólo si ella te lo pidió (skill operar-jd).
 - Si no sabés qué hay de nuevo en la plataforma, pedí las novedades con la skill novedades-y-ayuda.
 - Antes de pedir un envío a un contacto de un lead, preguntá `leads__check_cold_contact` (y `proposals__check_send` si es una propuesta). Si da `contact_basis_missing`, explicá las condiciones (base, retención, país, sin supresión y, por correo, dirección corporativa) y no afirmes cuál falta si no lo sabés; no mandes a la persona a buscar un campo.
