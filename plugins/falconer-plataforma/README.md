@@ -11,9 +11,9 @@ Plugin de Claude Code de la plataforma de reclutamiento (ADR 0506). Reemplaza al
 
 ## Los dos servidores (desde la 0.6.0, ADR 0666)
 - **plataforma** (`/mcp`): escrituras, tarjetas de aprobación, novedades, «qué falta» y la guía completa.
-- **plataforma-lecturas** (`/mcp/code`): las lecturas por Code Mode (`plataforma__search` y `plataforma__execute`), cuando la
-  owner lo prendió en Ajustes. Si no está prendido, conecta igual y muestra **cero herramientas**: es lo esperado, se lee por
-  «plataforma». Con Code Mode prendido, «plataforma» deja de listar las lecturas y la sesión carga cerca de un 38 % menos.
+- **plataforma-lecturas** (`/mcp/code`): las lecturas por Code Mode (`plataforma__search` y `plataforma__execute`). Viene
+  prendido (ADR 0806) y la owner lo apaga en Ajustes: apagado, conecta igual y muestra **cero herramientas**; si la instalación
+  no tiene Code Mode, da error. Las dos cosas son esperables: se lee por «plataforma», que lo avisa (ADR 0807). Con Code Mode prendido, «plataforma» deja de listar las lecturas y la sesión carga cerca de un 38 % menos.
 
 Por ahora, **solo datos de prueba**. La IA recomienda, la persona decide; nada de automatizar LinkedIn.
 
