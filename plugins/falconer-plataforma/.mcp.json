@@ -4,14 +4,16 @@
       "type": "http",
       "url": "https://mcp.falconertalent.com/mcp",
       "headers": {
-        "Authorization": "Bearer ${RRHH_AGENT_KEY}"
+        "Authorization": "Bearer ${RRHH_AGENT_KEY}",
+        "X-Falconer-Kit": "0.8.54"
       }
     },
     "plataforma-lecturas": {
       "type": "http",
       "url": "https://mcp.falconertalent.com/mcp/code",
       "headers": {
-        "Authorization": "Bearer ${RRHH_AGENT_KEY}"
+        "Authorization": "Bearer ${RRHH_AGENT_KEY}",
+        "X-Falconer-Kit": "0.8.54"
       }
     }
   }

@@ -8,17 +8,21 @@ data="${CLAUDE_PLUGIN_DATA:-}"
 [ -n "$root" ] || exit 0
 local_v=$(sed -n 's/.*"version": *"\([0-9][0-9.]*\)".*/\1/p' "$root/.claude-plugin/plugin.json" 2>/dev/null | head -n 1)
 [[ "$local_v" =~ $SEMVER ]] || exit 0
-today=$(date +%Y-%m-%d)
+# ADR 1118: el caché era de un día. Alcanzaba para un aviso («hay una versión nueva»); no alcanza para un
+# catálogo en el disco del que se arman llamadas, porque un día entero de esquemas viejos son llamadas que el
+# servidor frena una por una. Pasa a 30 minutos, y el hook corre también al retomar la sesión (`resume`).
+TTL=1800
+now=$(date +%s)
 remote_v=""
 if [ -n "$data" ] && [ -f "$data/version-check" ]; then
-  read -r day cached < "$data/version-check" 2>/dev/null
-  if [ "$day" = "$today" ] && [[ "$cached" =~ $SEMVER ]]; then remote_v="$cached"; fi
+  read -r stamp cached < "$data/version-check" 2>/dev/null
+  if [[ "$stamp" =~ ^[0-9]+$ ]] && (( now - stamp < TTL )) && [[ "$cached" =~ $SEMVER ]]; then remote_v="$cached"; fi
 fi
 if [ -z "$remote_v" ]; then
   body=$(curl --silent --fail --max-time 3 --proto '=https' --max-redirs 0 --max-filesize 1024 "$URL" 2>/dev/null | head -c 64 | tr -d '[:space:]')
   [[ "$body" =~ $SEMVER ]] || exit 0
   remote_v="$body"
-  if [ -n "$data" ]; then mkdir -p "$data" 2>/dev/null && printf '%s %s\n' "$today" "$remote_v" > "$data/version-check" 2>/dev/null; fi
+  if [ -n "$data" ]; then mkdir -p "$data" 2>/dev/null && printf '%s %s\n' "$now" "$remote_v" > "$data/version-check" 2>/dev/null; fi
 fi
 # Solo avisa si la remota es MAYOR que la local (componente a componente).
 IFS=. read -r r1 r2 r3 <<< "$remote_v"
@@ -26,5 +30,5 @@ IFS=. read -r l1 l2 l3 <<< "$local_v"
 newer=0
 if (( 10#$r1 > 10#$l1 )) || { (( 10#$r1 == 10#$l1 )) && (( 10#$r2 > 10#$l2 )); } || { (( 10#$r1 == 10#$l1 )) && (( 10#$r2 == 10#$l2 )) && (( 10#$r3 > 10#$l3 )); }; then newer=1; fi
 [ "$newer" = 1 ] || exit 0
-printf '{"systemMessage":"Hay una versión nueva del plugin de la plataforma (%s; tenés la %s). Actualizala con: claude plugin update falconer-plataforma@falconer-plugins"}\n' "$remote_v" "$local_v"
+printf '{"systemMessage":"Hay una versión nueva del plugin de la plataforma (%s; tenés la %s), así que tu catálogo local de herramientas (catalogo.jsonl) también está viejo: el servidor va a frenar las llamadas cuyo esquema cambió. Actualizalo con: claude plugin update falconer-plataforma@falconer-plugins"}\n' "$remote_v" "$local_v"
 exit 0
