@@ -28,3 +28,28 @@ El archivo, el mapeo de columnas y la procedencia (base legal, origen, retenció
 1. Con el lote mapeado, `imports__get_import` (estado `mapped`, filas) e `imports__preview_import` (conteos: nuevas, ya en la base, repetidas, inválidas, suprimidas) te dejan contarle qué traería.
 2. `imports__confirm_import`: tarjeta en «Para aprobar» con los conteos, una muestra de 20 filas, lo que ella declaró y su segundo factor. Hasta 200 filas por lote y 2 lotes por día; más, `import_too_large` (que lo parta o lo confirme en la app); sin mapear, `import_not_mapped`. La red de LinkedIn no se importa.
 3. Nunca digas que quedó importado antes de que ella apruebe; después `imports__get_import` dice cuántas se crearon.
+
+## Aceptar las lecturas pendientes en lote
+Si te pide «aceptá las lecturas que están esperando» (eran 172 el 15/11), no hace falta una por una. **Dos
+modos, según lo que te diga**, y en los dos la tarjeta la aprueba ella:
+
+**«Todas»** → `matching__accept_cv_batch` con `all_pending: true` y `expected_count` = el `totals.batchable`
+que trae la lista de pendientes. **No armes una lista de ids**: el conjunto lo resuelve el servidor (las más
+viejas, hasta 200 por tarjeta) y la tarjeta se aprueba sobre el **conteo**, con una muestra y lo que queda
+afuera. Si el conteo cambió entre que lo contaste y lo pediste, 409 `selection-changed`: volvé a contar.
+La respuesta dice cuántas quedan; si quedan, pedí otra tarjeta **cuando apruebe la primera**.
+
+**«Éstas»** → `matching__next_ai_suggestion_to_review` con `limit` alto, quedate con los ítems cuyo `kind` dice que son
+una lectura de CV y pedí `matching__accept_cv_batch` con `suggestion_ids` (de 1 a 25, sin repetir; más es 422 `too_many_cv_parses`).
+**Sólo** esos ids sirven, y por 30 minutos. La tarjeta lleva una línea por candidata —puesto y empresa que
+propone la lectura, cuánto trae y **qué CV interno reemplaza**—.
+
+Pedir los dos modos a la vez, o ninguno, es 422 `cv_batch_one_mode`; `all_pending` sin el conteo, 422
+`cv_batch_count_required`. Hasta 4 tarjetas por día. **No elijas a quiénes por tu cuenta.**
+
+Lo que **no entra** al lote y se revisa **de a una en la ficha**, donde se ven las citas: una lectura que vino
+**vacía** (409 `cv-parse-empty`: aceptarla vaciaría el CV interno que la candidata ya tenía), una que sale de
+un **CV marcado** con texto oculto o dirigido a una IA (409 `cv-text-flagged`), y —sólo en «todas»— las que
+reemplazarían un CV interno **cargado por otra vía** (a mano, por vos, de LinkedIn): un lote no pisa eso. Si
+una dejó de estar revisada, 409 `cv-not-reviewed`. Es todo o nada: con cualquiera de esos errores no se acepta
+ninguna.

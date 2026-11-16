@@ -30,7 +30,13 @@ Ojo con los dos nombres: `has_cv` es el **archivo** que subió la candidata; `in
 - `data_kind` es `real` por omisión: las candidatas de prueba se piden aparte (`data_kind: "test"`) y **no se mezclan** con las reales, ni en la tanda ni en el `after`.
 - La cola **no trae** a quien no se le puede leer el CV ahora ni a quien ya tiene una lectura tuya esperando que la persona la acepte, así que no repitas: si alguien no aparece, es por algo.
 - `next_after` en null quiere decir que no hay más **para recorrer ahora**, aunque `pending` siga en más de cero. No es un error y no hay que insistir.
-- Cada lectura queda **pendiente**: el CV interno lo acepta ella en la app. Vos no aceptás ninguno.
+- Cada lectura queda **pendiente**: el CV interno lo acepta **ella**. Vos no aceptás ninguno; sí podés dejarle el lote listo (abajo).
+
+### Aceptar las lecturas pendientes en lote
+Si te pide «aceptá las lecturas que están esperando», no hace falta una por una: `matching__accept_cv_batch` las resuelve en **una sola tarjeta**, que aprueba ella, en dos modos: «todas» las pendientes, o las que ella elija. **Leé antes [`referencia-b.md`](referencia-b.md)** (§ Aceptar las lecturas pendientes en lote): los dos modos y qué manda cada uno, los topes, qué **no** entra al lote y se revisa de a una en la ficha, y los errores.
+
+Las sugerencias de **macheo** no se aceptan en lote: ahí se ordenan personas y las decide ella de a una (skill
+`machear`).
 
 
 ## Completar datos, CV que llegaron por correo, importar una planilla
