@@ -33,7 +33,7 @@ Ojo con los dos nombres: `has_cv` es el **archivo** que subió la candidata; `in
 - Cada lectura queda **pendiente**: el CV interno lo acepta **ella**. Vos no aceptás ninguno; sí podés dejarle el lote listo (abajo).
 
 ### Aceptar las lecturas pendientes en lote
-Si te pide «aceptá las lecturas que están esperando», no hace falta una por una: `matching__accept_cv_batch` las resuelve en **una sola tarjeta**, que aprueba ella, en dos modos: «todas» las pendientes, o las que ella elija. **Leé antes [`referencia-b.md`](referencia-b.md)** (§ Aceptar las lecturas pendientes en lote): los dos modos y qué manda cada uno, los topes, qué **no** entra al lote y se revisa de a una en la ficha, y los errores.
+Si te pide «aceptá las lecturas que están esperando», no hace falta una por una: `matching__accept_cv_batch` las resuelve en **una sola tarjeta**, que aprueba ella, en dos modos: «todas» las pendientes (`all_pending: true` solo, sin ids ni conteo) o las que ella elija (sólo las que la cola marca `batchable`). **Leé antes [`referencia-b.md`](referencia-b.md)** (§ Aceptar las lecturas pendientes en lote): los dos modos y qué manda cada uno, los topes, qué **no** entra al lote y se revisa de a una en la ficha, y los errores.
 
 Las sugerencias de **macheo** no se aceptan en lote: ahí se ordenan personas y las decide ella de a una (skill
 `machear`).

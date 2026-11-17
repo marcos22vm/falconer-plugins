@@ -33,19 +33,23 @@ El archivo, el mapeo de columnas y la procedencia (base legal, origen, retenció
 Si te pide «aceptá las lecturas que están esperando» (eran 172 el 15/11), no hace falta una por una. **Dos
 modos, según lo que te diga**, y en los dos la tarjeta la aprueba ella:
 
-**«Todas»** → `matching__accept_cv_batch` con `all_pending: true` y `expected_count` = el `totals.batchable`
-que trae la lista de pendientes. **No armes una lista de ids**: el conjunto lo resuelve el servidor (las más
-viejas, hasta 200 por tarjeta) y la tarjeta se aprueba sobre el **conteo**, con una muestra y lo que queda
-afuera. Si el conteo cambió entre que lo contaste y lo pediste, 409 `selection-changed`: volvé a contar.
-La respuesta dice cuántas quedan; si quedan, pedí otra tarjeta **cuando apruebe la primera**.
+**«Todas»** → `matching__accept_cv_batch` con `all_pending: true` **y nada más**: ni ids ni ningún conteo
+(si mandás `expected_count`, 422 `cv_batch_count_in_app`). El conjunto lo resuelve el servidor —las más
+viejas, hasta 200 por tarjeta—, lo **fija** en la tarjeta y la tarjeta dice el conteo, con una muestra y lo
+que queda afuera. La respuesta dice cuántas quedan; si quedan, pedí otra tarjeta **cuando apruebe la
+primera**. Si entre la tarjeta y su «dale» alguna de **esas** filas deja de poder aceptarse, no se acepta
+ninguna y te lo dice; una lectura **nueva** que llegó después no molesta: queda para la vuelta siguiente.
 
 **«Éstas»** → `matching__next_ai_suggestion_to_review` con `limit` alto, quedate con los ítems cuyo `kind` dice que son
-una lectura de CV y pedí `matching__accept_cv_batch` con `suggestion_ids` (de 1 a 25, sin repetir; más es 422 `too_many_cv_parses`).
-**Sólo** esos ids sirven, y por 30 minutos. La tarjeta lleva una línea por candidata —puesto y empresa que
-propone la lectura, cuánto trae y **qué CV interno reemplaza**—.
+una lectura de CV **y que traen `batchable: true`**, y pedí `matching__accept_cv_batch` con `suggestion_ids`
+(de 1 a 25, sin repetir; más es 422 `too_many_cv_parses`). Las que traen `not_batchable` (`empty` o
+`flagged`) **no las mandes**: si va una adentro, te contesta 409 ahí mismo (`cv_parse_empty` o
+`cv_text_flagged`, con los ids) y no se arma ninguna tarjeta. **Sólo** esos ids sirven, y por 30 minutos. La
+tarjeta lleva una línea por candidata —puesto y empresa que propone la lectura, cuánto trae y **qué CV
+interno reemplaza**—.
 
-Pedir los dos modos a la vez, o ninguno, es 422 `cv_batch_one_mode`; `all_pending` sin el conteo, 422
-`cv_batch_count_required`. Hasta 4 tarjetas por día. **No elijas a quiénes por tu cuenta.**
+Pedir los dos modos a la vez, o ninguno, es 422 `cv_batch_one_mode`. Hasta 4 tarjetas por día. **No elijas a
+quiénes por tu cuenta.**
 
 Lo que **no entra** al lote y se revisa **de a una en la ficha**, donde se ven las citas: una lectura que vino
 **vacía** (409 `cv-parse-empty`: aceptarla vaciaría el CV interno que la candidata ya tenía), una que sale de
