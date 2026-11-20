@@ -5,7 +5,8 @@ Plugin de Claude Code de la plataforma de reclutamiento (ADR 0506). Reemplaza al
 ## Instalar (una vez, desde la PC de la persona)
 1. Definir la variable de entorno `RRHH_AGENT_KEY` con la key personal que genera la app en Configuración → Conectar tu Claude
    (nunca la pegues en un archivo ni en el chat).
-2. `claude plugin marketplace add marcos22vm/falconer-plugins#v0.7.4` (la etiqueta fija la versión: subir de versión es una acción deliberada).
+2. `claude plugin marketplace add marcos22vm/falconer-plugins#v0.8.71` (la etiqueta fija la versión: subir de versión es una acción deliberada).
+   **La versión que corre hoy la dice el servidor**, así que no hace falta creerle a este archivo: `curl https://app.falconertalent.com/api/public/plugin-version`.
 3. `claude plugin install falconer-plataforma@falconer-plugins`.
 4. Reiniciar Claude Code. `/mcp` tiene que mostrar «plataforma» y «plataforma-lecturas».
 
