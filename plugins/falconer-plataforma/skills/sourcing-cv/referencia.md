@@ -26,5 +26,13 @@ Los tableros sirven para **detectar empresas que están contratando** (oportunid
 ## Subir un lote de CV (varios archivos)
 Sólo los archivos que te nombró la persona. `cv_batches__request_batch` con `body: {}` deja una tarjeta con segundo factor: la procedencia (base legal, fuente del aviso, período, retención, relación previa, real o prueba) la elige ella; vos no mandás nada (422 `reason_chosen_in_app`). Al aprobar vuelve `batch_id` y un ticket (10 minutos, hasta 25 archivos): uno por `curl -T archivo -H "Authorization: Bearer <upload_ticket>" -H "X-Filename: cv.pdf" <upload_url>`, sin escribirlo a disco. Cada subida dice `draft_id` o `code`, nunca conteos. Para seguir, `cv_batches__request_more_files` con el `batch_id` (200 por lote; lleno, `batch_full`). Si ella dice que un borrador tuyo no va, `cv_batches__discard_draft` con `draft_id` y `body: {}` (el motivo lo elige ella); `cv_batches__get_agent_draft` dice si lo subiste vos.
 
+
+### De dónde salieron los CV (obligatorio)
+La procedencia lleva un campo que **no tiene valor por omisión**: de dónde salieron. `legal__get_prior_relationship` devuelve `declared` (la consultora declaró que su base entra por relación previa: cada persona le mandó su CV y está la conversación), `allowed` (su paquete legal admite que eso saque el aviso: en Argentina sí, en Brasil y la UE no) y `declared_at`. Esa lectura sirve para **proponer** la respuesta, no para reemplazarla: la persona la elige en la tarjeta, y la pantalla se la muestra preseleccionada diciendo que vino de ahí.
+
+Por qué importa: un lote declarado «de otra fuente» deja a cada persona con el aviso del art. 14 pendiente y un mes de plazo; vencido, **no se la puede presentar a un cliente**. Declararlo mal al revés es peor: quitarle el aviso a alguien que sí lo necesitaba. Por eso no asumas ninguno de los dos.
+
+Lo ya cargado se arregla, pero **no por acá**: corregir el origen de un lote es de una **owner**, en la app, sobre el lote, y con eso se corrige el aviso de todas las personas que salieron de él de una vez. No toca a quien ya recibió el aviso ni a quien pidió la baja. Si te lo piden, decí eso y no intentes otra ruta.
+
 ## Leer la ficha de una persona
 `people__get_person_card` (datos, postulaciones, conversaciones y alertas); `people__list_candidates` recorre la base con `offset`/`limit` (una en particular: `people__search_people`). `people__get_declared_preferences` (disponibilidad, modalidad, si declaró pretensión, sin el monto), `people__get_mobility` y `people__get_preferred_locale` (idioma para escribirle). No son un puntaje: no ordenes ni descartes con ellas.

@@ -60,6 +60,8 @@ Dos lugares, y sólo dos:
 ## Subir un lote de CV (varios archivos)
 Sólo los archivos que te nombró la persona. `cv_batches__request_batch` con `body: {}` deja una tarjeta con segundo factor: la procedencia la elige ella, vos no mandás nada. **Antes de pedirla, leé [`referencia.md`](referencia.md)** (§ Subir un lote de CV): el ticket, la subida con `curl`, seguir con más archivos y descartar un borrador.
 
+**Preguntá de dónde salieron estos CV antes de pedir el lote.** Si se los mandó cada persona (relación previa) no corresponde el aviso de privacidad; si los obtuvo de otra fuente, sí, y vencido el mes **frena presentarla a un cliente**. `legal__get_prior_relationship` te dice qué declaró la consultora (`declared`) y si su país lo admite (`allowed`): con eso **proponé** la respuesta en palabras —«me consta que tu base es de CVs que te mandaron ellas, ¿este lote también?»—, nunca la des por hecha. Es una declaración legal y la elige ella en la tarjeta. Si alguien te dice que sus candidatas quedaron con «aviso pendiente» y no corresponde, no busques otro camino: la corrige una owner en la app, sobre el lote.
+
 
 ## Confirmar un borrador de un lote de CV
 Con un borrador listo (`review_state: clean`), `people__confirm_cv_draft` con **solo** `draft_id` y `search_ids`: tarjeta que aprueba la persona. **Antes de pedirla, leé [`referencia.md`](referencia.md)** (§ Confirmar un borrador): qué no mandar y qué hacer con `needs_acknowledgement`.

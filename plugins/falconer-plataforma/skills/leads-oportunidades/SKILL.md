@@ -32,6 +32,8 @@ El primer toque, `leads__set_first_touch_template`, **antes de leer nada del lea
 
 **Una búsqueda vieja que quedó sin cliente.** Dos pasos, en este orden, los dos tarjeta: `leads__link_search` y después `proposals__link_opportunity`. **No uses `leads__open_engagement`**: abriría una segunda búsqueda. **Leé antes [`referencia.md`](referencia.md)** (§ Una búsqueda sin cliente).
 
+**Vacantes en CSV.** La persona sube y confirma en la app; vos mirás con `leads__preview_vacancy_import` y `leads__get_vacancy_import`. **Leé antes [`referencia-b.md`](referencia-b.md)** (§ Vacantes en CSV).
+
 **Vetar o descartar:** leé antes [`referencia-b.md`](referencia-b.md) (§ Vetar o descartar).
 
 **El cliente firmó.** Sólo cuando la persona te dice que el cliente firmó o aceptó por escrito, `leads__convert_opportunity` (tarjeta de aprobación; **no se deshace**). **Leé antes [`referencia.md`](referencia.md)** (§ El cliente firmó): qué pasa al aprobarla, qué interruptor pide y los 409.
