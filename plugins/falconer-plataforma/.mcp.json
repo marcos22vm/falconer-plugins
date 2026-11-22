@@ -5,8 +5,8 @@
       "url": "https://mcp.falconertalent.com/mcp",
       "headers": {
         "Authorization": "Bearer ${RRHH_AGENT_KEY}",
-        "X-Falconer-Kit": "0.8.74",
-        "X-Falconer-Catalog": "0.8.74"
+        "X-Falconer-Kit": "0.8.75",
+        "X-Falconer-Catalog": "0.8.75"
       }
     },
     "plataforma-lecturas": {
@@ -14,8 +14,8 @@
       "url": "https://mcp.falconertalent.com/mcp/code",
       "headers": {
         "Authorization": "Bearer ${RRHH_AGENT_KEY}",
-        "X-Falconer-Kit": "0.8.74",
-        "X-Falconer-Catalog": "0.8.74"
+        "X-Falconer-Kit": "0.8.75",
+        "X-Falconer-Catalog": "0.8.75"
       }
     }
   }
