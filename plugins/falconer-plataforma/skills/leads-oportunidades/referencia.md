@@ -35,3 +35,11 @@ Una búsqueda real sin vacante no tiene cliente comercial que la ate, **no entra
 
 ## Volver a revisar
 Si la persona quiere deshacer un habilitado o un veto, `leads__reset_lead` con el id del lead (tarjeta de aprobación, con quién lo decidió y cuándo). Con el interruptor; un lead sin revisar da 409 `lead_not_decided`. No reabre las oportunidades descartadas ni levanta bajas u oposiciones de sus contactos. Te vuelven el id y el estado.
+
+## Alta de un contacto
+`leads__add_new_person_contact` lleva nombre, correo de trabajo o LinkedIn, cargo, tipo y rol, y sale como
+tarjeta. Pedila **antes de leer el lead**, con el id de la tarjeta que lo creó. Si da `person_not_created`,
+ya hay alguien con ese dato o pidió no ser contactada: buscala con `people__search_people` y sumala con
+`leads__add_contact` y su `person_id` —que es el **alias** `P-XXXXXX` que te devolvió la búsqueda, no un id
+con guiones—. La procedencia, la base legal y la retención las pone el servidor, y de dónde salió el dato lo
+elige la persona al aprobar; vos mandás `contact_country` sólo si el lead no tiene país.

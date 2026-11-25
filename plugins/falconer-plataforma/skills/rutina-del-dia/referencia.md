@@ -22,3 +22,10 @@ Sólo lectura; nada se pide.
    - Búsquedas de más de 30 días: `hunting__list_searches` y `hunting__get_search_next_step` de cada una; en el resumen, dónde se trabó y qué opciones hay. (Los lunes, el digest completo.)
    - Retención por vencer: `privacy__list_expiring`; lo vencido va primero. Proponé una acción por caso, que la persona decide.
    - Tareas de LinkedIn del día: `outreach__next_linkedin_task` y `outreach__open_linkedin_task` dicen cuál sigue y si el texto está listo. Una lista priorizada; **la extensión no hace nada sola**: las manda ella, a ritmo humano.
+
+## A3. Entrevistas de mañana
+`scheduling__list_interviews` con el rango de mañana. De cada una mirá la ficha: la hora en los dos husos, la
+búsqueda, los criterios (`assessments__get_criteria`) y si confirmó. Si falta la confirmación o el
+recordatorio, `scheduling__preview_interview_action` y después `scheduling__send_interview_reminder` o
+`scheduling__request_interview_attendance`: **una tarjeta cada uno**, y sólo dentro de la hora de la
+candidata (entre las 8:00 y las 20:00 de su huso; si no, al resumen con la hora a la que se puede).

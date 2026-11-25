@@ -20,7 +20,7 @@ Antes de cada pedido mostrale **lo que vas a cargar** y preguntale «¿lo pido a
 ## CV que llegaron adjuntos por correo
 1. `mail__list_attachments` dice cuántos PDF o DOCX llegaron sin guardar (`count`) y, de cada uno, si va **directo** (el hilo ya tiene persona) o hay **duda** (`doubt`).
 2. Directos: `mail__save_attachment_as_cv` los guarda como CV de la persona del hilo (entra pendiente de revisión, sin tarjeta). Si da 409 `cv_attachment_needs_person`, no insistas.
-3. Con duda: preguntale de quién es cada uno (`person_ids` son los que tienen el correo del remitente) y, con lo que diga, `mail__propose_attachment_as_cv`: tarjeta en «Para aprobar». Nunca elijas vos a quién.
+3. Con duda: preguntale de quién es cada uno (`person_ids` son los que tienen el correo del remitente; van por **alias**) y, con lo que diga, `mail__propose_attachment_as_cv`: tarjeta en «Para aprobar». Nunca elijas vos a quién.
 4. Cuando el CV quede revisado, delegá su lectura en el subagente `carga-cv`.
 
 ## Importar una planilla de candidatos
